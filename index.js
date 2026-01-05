@@ -4,7 +4,7 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const { createClient } = require('@supabase/supabase-js');
-const supabase = createClient('process.env.SUPABASE_URL', 'process.env.SUPABASE_KEY');
+const supabase = createClient(process.env.SUPABASE_URL,process.env.SUPABASE_KEY);
 
 const app = express();
 app.use(express.json());
