@@ -4,7 +4,7 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const { createClient } = require('@supabase/supabase-js');
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+const supabase = createClient(process.env.SUPABASE_URL,process.env.SUPABASE_KEY);
 
 const app = express();
 app.use(express.json());
@@ -13,7 +13,7 @@ app.use(cors());
 const PORT = process.env.PORT || 8080;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello zain  i am from dialogflow server!')
 })
 
 app.post("/webhook", async (req, res) => {
@@ -28,7 +28,7 @@ app.post("/webhook", async (req, res) => {
     );
   }
 
-  async function booking(agent) {
+  async function bookings(agent) {
     const { destination, departure, date, number, email, phone } = agent.parameters;
 
     const { data, error } = await supabase
@@ -61,9 +61,16 @@ app.post("/webhook", async (req, res) => {
 
   let intentMap = new Map();
   intentMap.set("Default Welcome Intent", hi);
-  intentMap.set("reservation", booking);
+  intentMap.set("hi", hi);
+  intentMap.set("bookings", bookings);
   agent.handleRequest(intentMap);
 });
+
+
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
 });
+
+
+
+
